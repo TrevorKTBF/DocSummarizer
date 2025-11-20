@@ -1,0 +1,45 @@
+Build a responsive, modern, high‑budget‑looking website with a friendly, easy‑to‑use feel.
+
+Objectives:
+- Create a large, centered drag‑and‑drop (and browse) upload zone for PDFs and images (PNG/JPG), plus a text area for pasted text (including Terms & Conditions).
+- On upload/paste, extract text (PDF parsing; OCR for images) and generate a 2–6 sentence summary per item.
+- Display each result clearly below the upload area; support multiple uploads in one session (each with its own card).
+- Place exactly two short sentences above the upload area explaining the site’s purpose. Default copy:
+  “Drop in or paste your text, PDF, or photo, and we’ll read it for you. In seconds, get a crystal‑clear summary.”
+
+Design:
+- Clean, premium look: generous white space, smooth shadows, modern sans‑serif, calming blues/greens, subtle hover/focus states.
+- Responsive for desktop/tablet/mobile; fast initial load; accessible (labels, focus rings, ARIA where needed).
+
+Tech stack:
+- Front end: React + Vite + TailwindCSS.
+- Back end: Node.js (Express).
+
+
+Core features:
+- Drag‑and‑drop + file picker for single/multiple files; textarea for pasted text.
+- Upload progress indicator for large files; graceful error states (type/size/timeout).
+- Result cards show filename/type, 2–6 sentence summary, “Copy summary” button, and a “Summarize again” button.
+- Session history (client‑side) so multiple results persist until refresh.
+- Site footer includes a “Terms” link (static page) and simple privacy note.
+
+API:
+- POST /api/summarize
+  - Accepts: multipart/form-data for files (pdf|png|jpg/jpeg) or JSON { text: string }.
+  - Server logic: if PDF → pdf-parse; if image → Tesseract OCR; if text → use as is. Then pass text to summarize(text, {sentences: 2..6}).
+  - Returns: { id, type, sourceName, summary }.
+- Implement summarize() with a provider interface; default to a free option and read API keys from environment variables.
+
+Non‑functional:
+-  reject unsupported types.
+- Security: validate MIME, strip EXIF, sanitize user text, disable code execution.
+- Performance: lazy‑load Tesseract, cache model/client, async processing with timeouts.
+- Code quality: modular components, clear folder structure (client/, server/), .env example, scripts for dev/build.
+
+Deliverables:
+- Fully working app with.
+- Sample tests or manual QA steps.
+
+
+Stretch goal:
+- “Copy to clipboard” next to each summary (with success toast).
