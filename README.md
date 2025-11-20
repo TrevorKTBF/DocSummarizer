@@ -1,2 +1,0 @@
-# DocSummarizer
-N/A
