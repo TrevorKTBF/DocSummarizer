@@ -1,1 +1,0 @@
-This is a test PDF document. It contains information about web development and modern technologies. React is a popular JavaScript library for building user interfaces. It uses a component-based architecture that makes applications easier to maintain and scale. The virtual DOM in React improves performance by efficiently updating the actual DOM.
